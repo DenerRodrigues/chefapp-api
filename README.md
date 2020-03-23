@@ -2,6 +2,7 @@
 API Application that allows you to Create and List Food Recipes.
 
 * [Python](https://www.python.org)
+* [Django](https://www.djangoproject.com)
 * [Django REST Framework](https://www.django-rest-framework.org)
 
 Postman Documentation: https://documenter.getpostman.com/view/2649090/SzS8sQiE?version=latest

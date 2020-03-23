@@ -34,6 +34,8 @@ python manage.py migrate
 ```
 
 #### Create Admin Account
+http://localhost:8000/admin/
+
 ```shell
 python manage.py createadminaccount
 ```

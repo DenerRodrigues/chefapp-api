@@ -4,5 +4,6 @@ django-jsonfield==1.4.0
 django_multiselectfield==0.1.12
 djangorestframework==3.11.0
 djangorestframework_simplejwt==4.4.0
+django_cors_headers==3.2.1
 
 requests==2.23.0

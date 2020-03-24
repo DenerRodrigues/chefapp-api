@@ -13,7 +13,9 @@ class CustomModelBackend(ModelBackend):
     """
 
     def authenticate(self, request, username=None, password=None, **kwargs):
+        email = username or kwargs.get('email')
         email = str(username).strip().lower()
+        password = password or kwargs.get('password')
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:

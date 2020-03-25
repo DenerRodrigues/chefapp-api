@@ -5,7 +5,7 @@ from .models import Chef, FoodRecipe
 
 @admin.register(Chef)
 class ChefAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'email', 'phone', 'owner__first_name', 'is_active', 'date_joined',]
+    list_display = ['id', 'name', 'email', 'phone', 'owner', 'is_active', 'date_joined',]
     list_filter = ['is_active',]
     search_fields = ['id', 'email', 'name', 'description', 'phone',
                      'owner__first_name', 'owner__last_name', 'owner__email',]

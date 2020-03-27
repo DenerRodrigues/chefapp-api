@@ -40,32 +40,17 @@ class SignUpSerializer(serializers.ModelSerializer):
 
 
 class AccountInfoSerializer(serializers.ModelSerializer):
-    full_name = serializers.CharField(required=False, write_only=True)
+    first_name = serializers.CharField(required=True, write_only=True)
+    last_name = serializers.CharField(required=True, write_only=True)
     email = serializers.CharField(required=False, validators=[UniqueValidator(queryset=User.objects.all())])
-    cep_address = serializers.CharField(required=False, write_only=True)
     phone = serializers.CharField(required=False)
     address = AddressSerializer(required=False)
     date_joined = serializers.DateTimeField(read_only=True)
     last_update = serializers.DateTimeField(read_only=True)
 
-    first_name = serializers.SerializerMethodField()
-    last_name = serializers.SerializerMethodField()
-
-    def get_first_name(self, data):
-        if isinstance(data, dict) and data.get('full_name'):
-            first_name, last_name = separate_full_name(data.get('full_name'))
-            return first_name
-        return data.first_name
-
-    def get_last_name(self, data):
-        if isinstance(data, dict) and data.get('full_name'):
-            first_name, last_name = separate_full_name(data.get('full_name'))
-            return last_name
-        return data.last_name
-
     class Meta:
         model = User
-        fields = ('full_name','cep_address', 'first_name', 'last_name', 'email', 'phone', 'address',
+        fields = ('full_name', 'first_name', 'last_name', 'email', 'phone', 'address',
                   'date_joined', 'last_update')
 
 

@@ -47,6 +47,18 @@ class AccountInfoView(RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
 
+    def update(self, request, *args, **kwargs):
+        data = request.data
+        if data.get('full_name'):
+            first_name, last_name = separate_full_name(data.get('full_name'))
+            data['first_name'] = first_name
+            data['last_name'] = last_name
+
+        serializer = self.get_serializer(instance=self.get_object(), data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+        
 
 class AccountChangePasswordView(UpdateAPIView):
     permission_classes = (IsAuthenticated,)
